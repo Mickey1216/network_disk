@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Nav/>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -23,5 +23,6 @@ export default {
 </script>
 
 <style>
-
+  /* css样式初始化 */
+  @import 'assets/css/normalize.css';
 </style>

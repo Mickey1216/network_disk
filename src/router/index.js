@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 
 //懒加载
 const Show = () => import('../views/Show.vue')
-const About = () => import('../components/About.vue')
+const About = () => import('../views/About.vue')
 const NotFound = () => import('../views/NotFound.vue')
 
 Vue.use(VueRouter)

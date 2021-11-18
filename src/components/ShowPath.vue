@@ -1,16 +1,12 @@
 <template>
     <div class="showpath">
-      <span>http://localhost:3000</span>
+      <span>http://localhost:3000{{path}}</span>
     </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-    }
-  },
-  methods:{}
+  props:["path"]
 }
 </script>
 

@@ -4,7 +4,7 @@
     <div class="showClass">
       <ShowPath :path="path"/>
       <Search/>
-      <List :list="list" @getFileName="getFileName"/>
+      <List :list="list" :path="path"/>
     </div> 
   </div>
 </template>
@@ -26,19 +26,16 @@ export default {
   data() {
     return {
       list:[],
-      path:""
+      path:["localhost:8080"]
     }
   },
   methods:{
-    getFileName(fileName){
-      this.path = '/'+fileName
-    }
+   
   },
   beforeCreate(){
     request({url:'/api/dir'})
       .then(res => {
         this.list = res.data.data
-        console.log(this.list)
       })
   }
 }

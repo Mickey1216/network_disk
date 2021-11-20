@@ -7,7 +7,7 @@
     </div>
     <div class="other" v-for="item in list">
       <div class="icon"><i :class="item.isDir ? 'el-icon-folder' : 'el-icon-tickets'"></i></div>
-      <div class="fileName" @click="getFileName($event)">{{item.name}}</div>
+      <div class="fileName"><a :href="get_link_url(item.name)">{{item.name}}</a></div>
       <div class="fileSize">{{item.size === '-1' ? '/' : item.size}}</div>
     </div>
   </div>
@@ -16,19 +16,28 @@
 <script>
 export default {
   data() {
-    return {}
+    return {
+      path_str: ""
+    }
   },
-  props: ["list"],
+  props: ["list", "path"],
   methods: {
-    getFileName(e){
-      let fileName = e.currentTarget.innerHTML
-    
-      if(fileName.indexOf('.') === -1){   //说明是文件夹
-        this.$emit('getFileName',fileName)
-      }else{
-
+    initialize_current_path(){
+      this.path.forEach((p) => {
+        this.path_str += p + '/'
+      })
+      this.path_str = this.path_str
+    }
+  },
+  computed: {
+    get_link_url(){
+      return (name) => {
+        return this.path_str + '/' + name
       }
     }
+  },
+  created(){
+    this.initialize_current_path();
   }
 };
 </script>
@@ -69,14 +78,26 @@ i{
   display: flex;
   align-items: center;
   border-bottom: 1px solid #dddddd;
-  color:#6699CC;
 }
 .other:hover{
   background-color: #eeeeee;
 }
 .other .fileName:hover{
-  cursor: pointer;
   color:#6666FF;
+}
+.other a:hover{
+  cursor: pointer;
   text-decoration: underline;
+}
+.other .fileName{
+  color:#6699CC;
+}
+.other .fileSize{
+  text-align: center;
+}
+
+div.other a {
+  text-decoration: none;
+  color: rgb(0, 123, 255);
 }
 </style>

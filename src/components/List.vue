@@ -17,8 +17,8 @@
 export default {
   data() {
     return {
-      path_str: "",
-      download_str: ""
+      path_str: "", //文件夹时
+      download_str: ""  //文件时
     }
   },
   props: ["list", "path"],
@@ -40,7 +40,7 @@ export default {
     }
   },
   computed: {
-    get_link_url(){
+    get_link_url(){ //当需要传参数时，使用高阶函数形式
       return (name, isDir) => {
         return (isDir ? this.path_str : this.download_str) + name
       }

@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <span>敬请期待...</span>
+    <span>若有疑问，可联系邮箱：383449174@qq.com</span>
   </div>
 </template>
 

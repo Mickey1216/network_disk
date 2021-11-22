@@ -29,13 +29,12 @@ export default {
       path:["http://localhost:8080"]
     }
   },
-  methods:{
-  },
   created(){
-    let _url = window.location.href
-    let resources_str = _url.substring(this.path[0].length, _url.length)
+    let _url = window.location.href //地址栏地址 url
+    
+    let resources_str = _url.substring(this.path[0].length, _url.length) //取到地址栏地址后面的参数
 
-    let tgt_url = '/api/dir' + resources_str
+    let tgt_url = '/api/dir' + resources_str //接口地址
 
     request({url: tgt_url})
       .then(res => {
@@ -43,7 +42,7 @@ export default {
 
         resources_str.split('/').forEach(elem => {
           if(elem !== '')
-            this.path.push(decodeURI(elem))
+            this.path.push(decodeURI(elem)) //decodeURI()处理中文
         })
       })
   }

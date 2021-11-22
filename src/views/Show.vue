@@ -26,16 +26,25 @@ export default {
   data() {
     return {
       list:[],
-      path:["localhost:8080"]
+      path:["http://localhost:8080"]
     }
   },
   methods:{
-   
   },
-  beforeCreate(){
-    request({url:'/api/dir'})
+  created(){
+    let _url = window.location.href
+    let resources_str = _url.substring(this.path[0].length, _url.length)
+
+    let tgt_url = '/api/dir' + resources_str
+
+    request({url: tgt_url})
       .then(res => {
         this.list = res.data.data
+
+        resources_str.split('/').forEach(elem => {
+          if(elem !== '')
+            this.path.push(decodeURI(elem))
+        })
       })
   }
 }

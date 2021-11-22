@@ -4,8 +4,7 @@
         <div class="input">
             <input type="text">
         </div>
-        <div class="searchBtn">搜索</div>
-        <div class="allFileBtn">全部文件</div>
+        <div @click="searchBtnClicked" class="searchBtn">搜索</div>
     </div>
 </template>
 
@@ -17,7 +16,9 @@ export default {
     }
   },
   methods:{
-      
+      searchBtnClicked(){
+          alert("暂未开放")
+      }
   }
 }
 </script>
@@ -61,22 +62,7 @@ export default {
         background-color:#6699CC;
         border-radius: 5px;
     }
-    .searchBtn:hover,.allFileBtn:hover{
+    .searchBtn:hover{
         background-color: #6666FF;
-    }
-    .allFileBtn{
-        margin-left: 10px;
-        border: 1px solid #6699CC;
-        color: #6699CC;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 70px;
-        height: 33px;
-        border-radius: 5px;
-    }
-    .allFileBtn:hover{
-        background-color: #6666FF;
-        color: #fff;
     }
 </style>

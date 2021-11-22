@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <div class="title">网盘-个人下载器</div>
-    <router-link to="/"><div class="home">网盘首页</div></router-link>
+    <a href="http://localhost:8080"><div class="home">网盘首页</div></a>
     <router-link to="/about"><div class="about">关于&帮助</div></router-link>
     <div class="github"><a href="https://github.com/Mickey1216"><i class="icon el-icon-s-custom"></i></a></div>
   </div>

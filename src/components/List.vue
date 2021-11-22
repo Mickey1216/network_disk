@@ -7,7 +7,7 @@
     </div>
     <div class="other" v-for="item in list">
       <div class="icon"><i :class="item.isDir ? 'el-icon-folder' : 'el-icon-tickets'"></i></div>
-      <div class="fileName"><a :href="get_link_url(item.name)">{{item.name}}</a></div>
+      <div class="fileName"><a :href="get_link_url(item.name, item.isDir)" :target="item.isDir ? '_self' : '_blank'">{{item.name}}</a></div>
       <div class="fileSize">{{item.size === '-1' ? '/' : item.size}}</div>
     </div>
   </div>
@@ -17,23 +17,38 @@
 export default {
   data() {
     return {
-      path_str: ""
+      path_str: "",
+      download_str: ""
     }
   },
   props: ["list", "path"],
   methods: {
     initialize_current_path(){
-      this.path.forEach((p) => {
+      this.path_str = ""
+      this.download_str = ""
+
+      let index = 0
+      this.path.forEach(p => {
+        if(!index)
+          this.download_str += p.replace(":8080", ":3000") + '/api/dir/'
+        else
+          this.download_str += p + '/'
+
         this.path_str += p + '/'
+        index++
       })
-      this.path_str = this.path_str
     }
   },
   computed: {
     get_link_url(){
-      return (name) => {
-        return this.path_str + '/' + name
+      return (name, isDir) => {
+        return (isDir ? this.path_str : this.download_str) + name
       }
+    }
+  },
+  watch: {
+    path(){
+      this.initialize_current_path()
     }
   },
   created(){
